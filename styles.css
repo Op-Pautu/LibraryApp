@@ -1,5 +1,5 @@
 body{
-    background-color: #6a9fa5;
+    background-color: #6a6ea5;
   }
   h1 {
     display: flex;
@@ -138,10 +138,10 @@ input#title {
 /* Modal Content/Box */
 #form {
     background-color: #fefefe;
-    margin: 25% auto; /* 15% from the top and centered */
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 22%; /* Could be more or less, depending on screen size */
+    width: 18%; /* Could be more or less, depending on screen size */
     }
 
  /* The Close Button */
