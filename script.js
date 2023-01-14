@@ -8,6 +8,7 @@ newBookBtn.addEventListener('click', () => popUpForm.style.display = 'block');
 const popUpForm = document.getElementById('popUp');
 const closePopUp = document.getElementsByTagName('span')[0];
 closePopUp.addEventListener('click', () => popUpForm.style.display = 'none');
+const form = document.querySelector('#form');
 
 //Book Constructor
 class Book {
@@ -23,17 +24,55 @@ class Book {
 let myLibrary = [];
 let newBook;
 
-function addBookToLibrary() {
+// const titleWarning = document.getElementById('title-warning');
+// const authorWarning = document.getElementById('author-warning');
+// const pagesWarning = document.getElementById('pages-warning');
+
+// function addBookToLibrary(event) {
+
+//     event.preventDefault();
+   
+    
+//     popUpForm.style.display = 'none';
+
+//     newBook = new Book(title, author, pages,read); 
+//     myLibrary.push(newBook); 
+//     setData();  //saves updated array in local storage
+//     render(); 
+//     form.reset();
+// }
+function addBookToLibrary(event) {
     event.preventDefault();
-    popUpForm.style.display = 'none';
+    const title = form.title.value;
+    const author = form.author.value;
+    const pages = form.pages.value;
 
-    newBook = new Book(title, author, pages,read); 
-    myLibrary.push(newBook); 
-    setData();  //saves updated array in local storage
-    render(); 
-    form.reset();
+    if (!title) {
+        document.querySelector("#title-warning").innerHTML = "Title is required";
+    } else {
+        document.querySelector("#title-warning").innerHTML = "";
+    }
+
+    if (!author) {
+        document.querySelector("#author-warning").innerHTML = "Author is required";
+    } else {
+        document.querySelector("#author-warning").innerHTML = "";
+    }
+
+    if (!pages) {
+        document.querySelector("#pages-warning").innerHTML = "Number of pages is required";
+    } else {
+        document.querySelector("#pages-warning").innerHTML = "";
+    }
+
+    if (title && author && pages) {
+        newBook = new Book(title, author, pages,read); 
+        myLibrary.push(newBook); 
+        setData();  //saves updated array in local storage
+        render(); 
+        form.reset();
+    }
 }
-
 //Creates book visual in browser
 function render() {
     const display = document.getElementById('Library-Container');
@@ -119,3 +158,4 @@ function restore() {
 }
 
 restore();
+
