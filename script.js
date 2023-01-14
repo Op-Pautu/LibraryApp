@@ -24,23 +24,7 @@ class Book {
 let myLibrary = [];
 let newBook;
 
-// const titleWarning = document.getElementById('title-warning');
-// const authorWarning = document.getElementById('author-warning');
-// const pagesWarning = document.getElementById('pages-warning');
 
-// function addBookToLibrary(event) {
-
-//     event.preventDefault();
-   
-    
-//     popUpForm.style.display = 'none';
-
-//     newBook = new Book(title, author, pages,read); 
-//     myLibrary.push(newBook); 
-//     setData();  //saves updated array in local storage
-//     render(); 
-//     form.reset();
-// }
 function addBookToLibrary(event) {
     event.preventDefault();
     const title = form.title.value;
