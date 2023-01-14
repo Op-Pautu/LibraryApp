@@ -14,7 +14,7 @@ class Book {
     constructor(title, author, pages, read) {
         this.title = form.title.value; 
         this.author = form.author.value; 
-        this.pages = form.pages.value + 'pg'; 
+        this.pages = form.pages.value + ' pages'; 
         this.read = form.read.checked; 
     }
 }
@@ -27,7 +27,7 @@ function addBookToLibrary() {
     event.preventDefault();
     popUpForm.style.display = 'none';
 
-    newBook = new Book(title, author, pages, read); 
+    newBook = new Book(title, author, pages,read); 
     myLibrary.push(newBook); 
     setData();  //saves updated array in local storage
     render(); 
@@ -36,7 +36,7 @@ function addBookToLibrary() {
 
 //Creates book visual in browser
 function render() {
-    const display = document.getElementById('Library-container');
+    const display = document.getElementById('Library-Container');
     const books = document.querySelectorAll('.book');
     books.forEach(book => display.removeChild(book));
    
@@ -47,7 +47,7 @@ function render() {
 
 //creates book DOM elements, to use in render();
 function createBook(item) {
-    const library = document.querySelector('#Library-container');
+    const library = document.querySelector('#Library-Container');
     const bookDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
     const authDiv = document.createElement('div');
@@ -71,7 +71,7 @@ function createBook(item) {
     pageDiv.classList.add('pages');
     bookDiv.appendChild(pageDiv);
 
-    readBtn.classList.add('readBtn')    
+    readBtn.classList.add('readBtn');    
     bookDiv.appendChild(readBtn);
     if(item.read===false) {
         readBtn.textContent = 'Not Read';
@@ -89,7 +89,7 @@ function createBook(item) {
 
     removeBtn.addEventListener('click', () => {
         myLibrary.splice(myLibrary.indexOf(item),1);
-        setData()
+        setData();
         render();
     });
 
@@ -101,3 +101,21 @@ function createBook(item) {
     }); 
 };
 
+// setting Library to be stored in local storage
+function setData() {
+    localStorage.setItem(`myLibrary`, JSON.stringify(myLibrary));
+}
+
+//pulls books from local storage when page is refreshed
+function restore() {
+    if(!localStorage.myLibrary) {
+        render();
+    }else {
+        let objects = localStorage.getItem('myLibrary') // gets information from local storage to use in below loop to create DOM/display
+        objects = JSON.parse(objects);
+        myLibrary = objects;
+        render();
+    }
+}
+
+restore();

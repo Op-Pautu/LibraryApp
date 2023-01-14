@@ -111,7 +111,13 @@ input#title {
   input[type=checkbox] {
     
     transform: scale(2);
+    vertical-align: middle;  /* fixes the problem of the checkbox being incorrectly aligned to the label */
+    position: relative;
+    bottom: 1px;
   }
+
+ 
+ 
   #popUp {
   
     display: none; /* Hidden by default */
@@ -129,3 +135,26 @@ input#title {
     font-size: 30px;
     }
     
+/* Modal Content/Box */
+#form {
+    background-color: #fefefe;
+    margin: 25% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 22%; /* Could be more or less, depending on screen size */
+    }
+
+ /* The Close Button */
+ .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+    
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
