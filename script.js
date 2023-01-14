@@ -18,3 +18,29 @@ class Book {
         this.read = form.read.checked; 
     }
 }
+
+//creates book from Book Constructor, adds to library
+let myLibrary = [];
+let newBook;
+
+function addBookToLibrary() {
+    event.preventDefault();
+    popUpForm.style.display = 'none';
+
+    newBook = new Book(title, author, pages, read); 
+    myLibrary.push(newBook); 
+    setData();  //saves updated array in local storage
+    render(); 
+    form.reset();
+}
+
+//Creates book visual in browser
+function render() {
+    const display = document.getElementById('Library-container');
+    const books = document.querySelectorAll('.book');
+    books.forEach(book => display.removeChild(book));
+   
+    for (let i=0; i<myLibrary.length; i++){
+        createBook(myLibrary[i]);
+    }
+}
