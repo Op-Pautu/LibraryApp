@@ -25,43 +25,44 @@ let myLibrary = [];
 let newBook;
 
 
+document.querySelector("#form").addEventListener("submit", addBookToLibrary) 
+
 function addBookToLibrary(event) {
     event.preventDefault();
- 
+  
     let titleInput = document.querySelector("#title");
-    titleInput.setCustomValidity("Enter a valid title");
     if (!titleInput.value) {
+      titleInput.setCustomValidity("Enter a valid title");
       titleInput.reportValidity();
-      return
+      return;
     }
-
+  
     let authorInput = document.querySelector("#author");
-    authorInput.setCustomValidity("Enter a valid author")
     if (!authorInput.value) {
-        authorInput.reportValidity();
-        return
-      }
-
-      let pageInput = document.querySelector("#pages");
+      authorInput.setCustomValidity("Enter a valid author");
+      authorInput.reportValidity();
+      return;
+    }
+  
+    let pageInput = document.querySelector("#pages");
+    if (!pageInput.value) {
       pageInput.setCustomValidity("Enter a valid number");
-      if (!pageInput.value) {
-        pageInput.reportValidity();
-        return
-      }
-
-      let title = form.title.value;
-      let author = form.author.value;
-      let pages = form.pages.value;
-      let read = form.read.checked;
+      pageInput.reportValidity();
+      return;
+    }
   
-      newBook = new Book(title, author, pages, read); 
-      myLibrary.push(newBook); 
-      setData();  //saves updated array in local storage
-      render(); 
-      form.reset();
-      
-  }
+    let title = form.title.value;
+    let author = form.author.value;
+    let pages = form.pages.value;
+    let read = form.read.checked;
   
+    newBook = new Book(title, author, pages, read); 
+    myLibrary.push(newBook); 
+    setData();  //saves updated array in local storage
+    render(); 
+    form.reset();
+  };
+     
 
 //Creates book visual in browser
 function render() {
