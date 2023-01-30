@@ -13,10 +13,10 @@ const form = document.querySelector('#form');
 //Book Constructor
 class Book {
     constructor(title, author, pages, read) {
-        this.title = form.title.value; 
-        this.author = form.author.value; 
-        this.pages = form.pages.value + ' pages'; 
-        this.read = form.read.checked; 
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
     }
 }
 
@@ -27,36 +27,42 @@ let newBook;
 
 function addBookToLibrary(event) {
     event.preventDefault();
-    const title = form.title.value;
-    const author = form.author.value;
-    const pages = form.pages.value;
-
-    if (!title) {
-        document.querySelector("#title-warning").innerHTML = "Title is required";
-    } else {
-        document.querySelector("#title-warning").innerHTML = "";
+ 
+    let titleInput = document.querySelector("#title");
+    titleInput.setCustomValidity("Enter a valid title");
+    if (!titleInput.value) {
+      titleInput.reportValidity();
+      return
     }
 
-    if (!author) {
-        document.querySelector("#author-warning").innerHTML = "Author is required";
-    } else {
-        document.querySelector("#author-warning").innerHTML = "";
-    }
+    let authorInput = document.querySelector("#author");
+    authorInput.setCustomValidity("Enter a valid author")
+    if (!authorInput.value) {
+        authorInput.reportValidity();
+        return
+      }
 
-    if (!pages) {
-        document.querySelector("#pages-warning").innerHTML = "Number of pages is required";
-    } else {
-        document.querySelector("#pages-warning").innerHTML = "";
-    }
+      let pageInput = document.querySelector("#pages");
+      pageInput.setCustomValidity("Enter a valid number");
+      if (!pageInput.value) {
+        pageInput.reportValidity();
+        return
+      }
 
-    if (title && author && pages) {
-        newBook = new Book(title, author, pages,read); 
-        myLibrary.push(newBook); 
-        setData();  //saves updated array in local storage
-        render(); 
-        form.reset();
-    }
-}
+      let title = form.title.value;
+      let author = form.author.value;
+      let pages = form.pages.value;
+      let read = form.read.checked;
+  
+      newBook = new Book(title, author, pages, read); 
+      myLibrary.push(newBook); 
+      setData();  //saves updated array in local storage
+      render(); 
+      form.reset();
+      
+  }
+  
+
 //Creates book visual in browser
 function render() {
     const display = document.getElementById('Library-Container');
@@ -142,4 +148,3 @@ function restore() {
 }
 
 restore();
-
