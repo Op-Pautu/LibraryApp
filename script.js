@@ -25,7 +25,7 @@ let myLibrary = [];
 let newBook;
 
 
-document.querySelector("#form").addEventListener("submit", addBookToLibrary) 
+
 
 function addBookToLibrary(event) {
     event.preventDefault();
